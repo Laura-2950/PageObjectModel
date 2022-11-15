@@ -12,16 +12,18 @@ import java.time.Duration;
 
 public class BasePage {
 
-    protected WebDriver driver;
-
-    public BasePage(WebDriver driver) {
-        this.driver= driver;
-    }
+    protected static WebDriver driver;
+    protected static WebDriverWait wait;
 
     public WebDriver chromeDriverConnection() {
-        System.setProperty("webserver.chrome.driver", ".\\src\\test\\resources\\driver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\driver\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        return driver;
+    }
+
+    public static WebDriver driver() {
         return driver;
     }
 

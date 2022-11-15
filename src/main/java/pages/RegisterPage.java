@@ -4,6 +4,7 @@ import base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class RegisterPage extends BasePage {
@@ -19,17 +20,18 @@ public class RegisterPage extends BasePage {
     By bottomRegistration = By.xpath("//*[@id=\"top-links\"]/ul/li[2]/ul/li[1]/a");
     By bottomFinish = By.xpath("//input[@value='Continue']");
     By message = By.id("content");
-    By warning= By.xpath("//div[@id='account-register'])[1]");
+    By warning= By.id("account-register");
     By bottomContinue = By.xpath("//*[@id=\"content\"]/div/div/a");
 
-    public RegisterPage(WebDriver driver) {
-        super(driver);
+    public RegisterPage(WebDriver driver, WebDriverWait wait) {
     }
 
 
     public String result() throws InterruptedException {
-        WebElement res = findElement(message);
-        return res.getText();
+        Thread.sleep(2000);
+        String res = findElement(message).getText();
+        System.out.println("Page content result: " + res);
+        return res;
     }
 
     public void clickLoginBtn() throws InterruptedException {
@@ -49,15 +51,20 @@ public class RegisterPage extends BasePage {
 
 
     public void clickEnterBtn() throws InterruptedException {
+        Thread.sleep(2000);
         click(bottomFinish);
     }
 
     public void clickContinueBtn() throws InterruptedException {
+        Thread.sleep(2000);
         click(bottomContinue);
     }
 
-    public String warning() throws InterruptedException {
-        return findElement(warning).getText();
+    public String container() throws InterruptedException {
+        Thread.sleep(2000);
+        String res= findElement(warning).getText();
+        System.out.println("Page content result: " + res);
+        return res;
     }
 
 }
